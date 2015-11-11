@@ -1,18 +1,33 @@
-<h3 id="title">Welcome to Twitter</h3>
-
+<div class={{if errors.tweet.title 'has-error'}}>
 {{input
   type="text"
   id="newTweet"
-  placeholder="Add something here!"
+  placeholder="Send a tweet!"
   value=newTitle
+  class="form-control"
   enter="addTweet"}}
-  
-  <ul id="tweet-list">
+  {{#unless isValid}}
+        {{#each errors.tweet.title as |err|}}
+        <span class="label label-danger">
+          {{err}}
+        </span>
+        {{/each}}
+          <br><br>
+        {{/unless}}
+       </div>
+
+<button type="button" {{action "viewTweets"}}>View More</button>
+<button type="button" {{action "NotviewTweets"}}>View Less</button>
+{{#if viewTweets}}
+<ul id="tweet-list">
   {{#each tweets as |tweet|}}
-    <li>
-      <label>{{tweet.title}}</label>
-<label>
-<button type="button" class="btn btn-danger btn-sm" {{action "deleteTweet" tweet}} >X</button></label>
+    <li><label>{{tweet.title}}</label>
+        <label><button type="button" class="btn btn-danger btn-sm" {{action "deleteTweet" tweet}} >X</button></label>
     </li>
   {{/each}}
 </ul>
+{{/if}}
+
+
+
+

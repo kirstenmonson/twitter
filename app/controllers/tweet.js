@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   tweets: Ember.computed.alias('model'),
   tweet: Ember.computed.alias('tweets.firstObject'),
 hasTweets:Ember.computed.notEmpty('tweet.items'),
-  
+
     actions: {
 addTweet: function(){
       var title = this.get('newTitle');
@@ -21,5 +21,14 @@ addTweet: function(){
         post.destroyRecord();
       });
     },
+
+      viewTweets: function() {
+      this.set('viewTweets', true);
+    },
+      
+      NotviewTweets: function() {
+      this.set('viewTweets', false);
+    },
+
   }
 });
