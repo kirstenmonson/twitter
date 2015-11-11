@@ -1,0 +1,18 @@
+<h3 id="title">Welcome to Twitter</h3>
+
+{{input
+  type="text"
+  id="newTweet"
+  placeholder="Add something here!"
+  value=newTitle
+  enter="addTweet"}}
+  
+  <ul id="tweet-list">
+  {{#each tweets as |tweet|}}
+    <li>
+      <label>{{tweet.title}}</label>
+<label>
+<button type="button" class="btn btn-danger btn-sm" {{action "deleteTweet" tweet}} >X</button></label>
+    </li>
+  {{/each}}
+</ul>
